@@ -75,8 +75,12 @@ WSGI_APPLICATION = 'codifySite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'codingqdb',
+        'USER': 'joyq',
+        'PASSWORD': 'Nautilus',
+        'HOST': 'localhost',
+        'PORT': '5433',
     }
 }
 
@@ -105,7 +109,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/New_York'
 
 USE_I18N = True
 
