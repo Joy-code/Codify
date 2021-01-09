@@ -20,6 +20,9 @@ class Category(models.Model):
         help_text='Question category',
     )
 
+    class Meta:
+        verbose_name_plural = "categories"
+
     def __str__(self):
         return self.name
 
@@ -38,6 +41,9 @@ class Difficulty(models.Model):
         help_text='Question difficulty',
     )
 
+    class Meta:
+        verbose_name_plural = "difficulties"
+
     def __str__(self):
         return self.difficulty
     
@@ -46,9 +52,9 @@ class Difficulty(models.Model):
 class codingQ(models.Model):
     name = models.CharField(max_length=200)
 
-    category = models.ForeignKey(Genre, help_text='Select a category for this question')
+    category = models.ForeignKey(Category, on_delete=models.RESTRICT, help_text='Select a category for this question')
 
-    difficulty = models.ForeignKey(Difficulty, help_text='Select a difficulty for this question')
+    difficulty = models.ForeignKey(Difficulty, on_delete=models.RESTRICT, help_text='Select a difficulty for this question')
 
     QUESTION_STATUS = (
         ('N', 'Not attempted'),
@@ -78,6 +84,7 @@ class codingQ(models.Model):
 
     class Meta:
         ordering = ['name']
+        verbose_name_plural = "Coding Questions"
 
     def __str__(self):
         return self.name
@@ -88,8 +95,8 @@ class codingQ(models.Model):
 
 
 # model representing an attempt at solving a coding question
-class Attempt(model.Models):
-    question = models.ForeignKey('Name', on_delete=models.RESTRICT)
+class Attempt(models.Model):
+    question = models.ForeignKey(codingQ, on_delete=models.RESTRICT)
     time_attempted = models.DateTimeField('Time Attempted')
 
     ATTEMPT_STATUS = (
@@ -104,7 +111,7 @@ class Attempt(model.Models):
         help_text='Indicate whether attempt was successful'
     )
 
-    time_to_solve = models.DurationField(blank=true)
+    time_to_solve = models.DurationField(blank=True)
 
     notes = models.TextField(max_length=1000, help_text='Enter what you learned from this attempt')
     
