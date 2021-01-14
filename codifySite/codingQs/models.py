@@ -70,15 +70,18 @@ class codingQ(models.Model):
         help_text='Question status',
     )
     
-    last_studied = models.DateTimeField('Last Studied')
+    last_studied = models.DateTimeField('Last Studied', blank=True, null=True)
 
-    upcoming_reminder = models.DateTimeField('Upcoming Reminder')
+    upcoming_reminder = models.DateTimeField('Upcoming Reminder', blank=True, null=True)
 
     question_text = models.TextField(max_length=1000, help_text='Enter a description of the question')
 
+    codingQ_ide = models.URLField(blank=True, null=True) 
+
     solution_stategy = models.TextField(max_length=1000, help_text='Enter the strategy for solving the problem ')
 
-    # solution_code = models.ImageField() '''install Pillow and change args'''
+    solution_code = models.ImageField(upload_to='solutionPNGs', blank=True, null=True) 
+
 
     # pastAttempts = 
 

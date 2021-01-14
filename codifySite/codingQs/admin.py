@@ -1,8 +1,28 @@
 from django.contrib import admin
 from .models import Category, Difficulty, codingQ, Attempt
 
-# Register your models here.
-admin.site.register(Category)
-admin.site.register(Difficulty)
-admin.site.register(codingQ)
-admin.site.register(Attempt)
+class codingQsInline(admin.TabularInline):
+    model = codingQ
+
+@admin.register(Category) 
+class CategoryAdmin(admin.ModelAdmin):
+    inlines = [codingQsInline]
+
+@admin.register(Difficulty)
+class DifficultyAdmin(admin.ModelAdmin): 
+    inlines = [codingQsInline]
+
+
+
+class AttemptsInline(admin.TabularInline):
+    model = Attempt
+
+@admin.register(codingQ) 
+class codingQAdmin(admin.ModelAdmin):
+    list_display = ('name', 'category', 'difficulty', 'status')
+    list_filter = ('category', 'difficulty', 'status')
+    inlines = [AttemptsInline]
+
+@admin.register(Attempt)
+class AttemptAdmin(admin.ModelAdmin):
+    pass
