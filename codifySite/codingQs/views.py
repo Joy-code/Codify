@@ -4,9 +4,17 @@ from django.http import HttpResponse
 from .models import codingQ, Attempt, Category, Difficulty
 
 
-def index(request):
-    # return HttpResponse("Hello, world. You're at the polls index.")
+def dashboard(request):
+    return render(request, 'dashboard.html')
 
+def login(request):
+    return render(request, 'login.html')
+
+def reminders(request):
+    return render(request, 'reminders.html')
+
+
+def stats(request):
     # Generate counts of the total number of codingQs
     num_questions = codingQ.objects.all().count()
     num_attempts = Attempt.objects.all().count()
@@ -16,4 +24,4 @@ def index(request):
         'num_attempts': num_attempts,
     }
 
-    return render(request, 'index.html', context=context)
+    return render(request, 'stats.html', context=context)

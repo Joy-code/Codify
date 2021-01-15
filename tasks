@@ -33,3 +33,9 @@ sudo service postgresql start
 
 - to find where Django is looking for static files 
 python manage.py findstatic --verbosity 2 css/styles.css
+
+- in-browser compiler APIs
+Skulpt (python): http://skulpt.org/
+JDoodle: https://docs.jdoodle.com/
+related Quora q: https://www.quora.com/What-online-compiler-APIs-are-available-to-run-user-code
+
